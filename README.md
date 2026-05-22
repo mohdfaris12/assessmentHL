@@ -25,7 +25,7 @@ cd dotnet8Boilerplate
 ### 2. Restore and build
 
 ```powershell
-dotnet build src/MyApp/MyApp.csproj
+dotnet build src/MyAppAssessment/MyAppAssessment.csproj
 ```
 
 Expected output:
@@ -37,10 +37,10 @@ Build succeeded.
 
 ### 3. Apply database migrations
 
-The default database is **SQLite** (`myapp.db`) — no installation required.
+The default database is **SQLite** (`myappassessment.db`) — no installation required.
 
 ```powershell
-dotnet ef database update --project src/MyApp/MyApp.csproj --startup-project src/MyApp/MyApp.csproj
+dotnet ef database update --project src/MyAppAssessment/MyAppAssessment.csproj --startup-project src/MyAppAssessment/MyAppAssessment.csproj
 ```
 
 > **First time running `dotnet ef`?** Install the EF Core CLI tool first:
@@ -48,7 +48,7 @@ dotnet ef database update --project src/MyApp/MyApp.csproj --startup-project src
 > dotnet tool install --global dotnet-ef
 > ```
 
-This creates `src/MyApp/myapp.db` and applies all migrations including seeded data:
+This creates `src/MyAppAssessment/myappassessment.db` and applies all migrations including seeded data:
 
 | Account | Password | Role |
 |---------|----------|------|
@@ -60,7 +60,7 @@ Two sample products (Widget A, Widget B) are also seeded.
 
 ```powershell
 dotnet dev-certs https --trust
-dotnet run --project src/MyApp/MyApp.csproj --launch-profile https
+dotnet run --project src/MyAppAssessment/MyAppAssessment.csproj --launch-profile https
 ```
 
 > Run `dotnet dev-certs https --trust` once per machine — it installs the local dev certificate so HTTPS works without browser warnings.
@@ -75,7 +75,7 @@ Open **https://localhost:7227** — you will be redirected to the login page aut
 ### 5. Run the tests
 
 ```powershell
-dotnet test tests/MyApp.Tests/MyApp.Tests.csproj
+dotnet test tests/MyAppAssessment.Tests/MyAppAssessment.Tests.csproj
 ```
 
 Expected output:

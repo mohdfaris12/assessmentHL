@@ -25,24 +25,24 @@ Second Section (Eta 2 hours)
 
 ## Task 1 — Rename the Project
 
-Rename all occurrences of `MyApp` to your chosen project name (e.g. `AcmePortal`).
+Rename all occurrences of `MyAppAssessment` to your chosen project name (e.g. `AcmePortal`).
 
 ### 1.1 — Rename files and folders
 
 ```
 dotnet7BoilerPlate/
   src/
-    MyApp/           ← rename folder to AcmePortal
-      MyApp.csproj   ← rename file to AcmePortal.csproj
+    MyAppAssessment/           ← rename folder to AcmePortal
+      MyAppAssessment.csproj   ← rename file to AcmePortal.csproj
   tests/
-    MyApp.Tests/     ← rename folder to AcmePortal.Tests
-      MyApp.Tests.csproj ← rename file to AcmePortal.Tests.csproj
-  MyApp.slnx         ← rename file to AcmePortal.slnx (or keep it)
+    MyAppAssessment.Tests/     ← rename folder to AcmePortal.Tests
+      MyAppAssessment.Tests.csproj ← rename file to AcmePortal.Tests.csproj
+  MyAppAssessment.slnx         ← rename file to AcmePortal.slnx (or keep it)
 ```
 
 ### 1.2 — Update the solution file
 
-Open `AcmePortal.slnx` and replace all `MyApp` references with `AcmePortal`.
+Open `AcmePortal.slnx` and replace all `MyAppAssessment` references with `AcmePortal`.
 
 ### 1.3 — Find and replace in code
 
@@ -50,15 +50,15 @@ Perform a **case-sensitive find & replace** across the entire project:
 
 | Find | Replace |
 |------|---------|
-| `MyApp` | `AcmePortal` |
-| `myapp.db` | `acmeportal.db` |
+| `MyAppAssessment` | `AcmePortal` |
+| `myappassessment.db` | `acmeportal.db` |
 
 Files that will be affected:
-- All `.cs` files (namespaces: `namespace MyApp.*`, `using MyApp.*`)
+- All `.cs` files (namespaces: `namespace MyAppAssessment.*`, `using MyAppAssessment.*`)
 - `appsettings.json` (connection string)
 - `_ViewImports.cshtml`
 - `Program.cs`
-- `MyApp.csproj` → `UserSecretsId` attribute
+- `MyAppAssessment.csproj` → `UserSecretsId` attribute
 
 ### 1.4 — Verify the build
 
@@ -76,12 +76,12 @@ Add a new entity of your choice to the application. Use `Customer` as a referenc
 
 ### 2.1 — Define the model
 
-Create `src/MyApp/Model/Customer.cs`:
+Create `src/MyAppAssessment/Model/Customer.cs`:
 
 ```csharp
 using System.ComponentModel.DataAnnotations;
 
-namespace MyApp.Model;
+namespace MyAppAssessment.Model;
 
 public class Customer
 {
@@ -105,7 +105,7 @@ public class Customer
 
 ### 2.2 — Register in ApplicationDbContext
 
-Edit `src/MyApp/Data/ApplicationDbContext.cs`:
+Edit `src/MyAppAssessment/Data/ApplicationDbContext.cs`:
 
 ```csharp
 public DbSet<Customer> Customers { get; set; }
@@ -114,22 +114,22 @@ public DbSet<Customer> Customers { get; set; }
 ### 2.3 — Create and apply the migration
 
 ```powershell
-dotnet ef migrations add AddCustomer --project src/MyApp/MyApp.csproj --startup-project src/MyApp/MyApp.csproj
-dotnet ef database update --project src/MyApp/MyApp.csproj --startup-project src/MyApp/MyApp.csproj
+dotnet ef migrations add AddCustomer --project src/MyAppAssessment/MyAppAssessment.csproj --startup-project src/MyAppAssessment/MyAppAssessment.csproj
+dotnet ef database update --project src/MyAppAssessment/MyAppAssessment.csproj --startup-project src/MyAppAssessment/MyAppAssessment.csproj
 ```
 
 ### 2.4 — Index page
 
-Create `src/MyApp/Pages/Customers/Index.cshtml.cs`:
+Create `src/MyAppAssessment/Pages/Customers/Index.cshtml.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using MyApp.Data;
-using MyApp.Model;
+using MyAppAssessment.Data;
+using MyAppAssessment.Model;
 
-namespace MyApp.Pages.Customers;
+namespace MyAppAssessment.Pages.Customers;
 
 [Authorize]
 public class IndexModel : PageModel
@@ -150,11 +150,11 @@ public class IndexModel : PageModel
 }
 ```
 
-Create `src/MyApp/Pages/Customers/Index.cshtml`:
+Create `src/MyAppAssessment/Pages/Customers/Index.cshtml`:
 
 ```html
 @page
-@model MyApp.Pages.Customers.IndexModel
+@model MyAppAssessment.Pages.Customers.IndexModel
 @{
     ViewData["Title"] = "Customers";
 }
@@ -208,17 +208,17 @@ Create `src/MyApp/Pages/Customers/Index.cshtml`:
 
 ### 2.5 — Create page
 
-Create `src/MyApp/Pages/Customers/Create.cshtml.cs`:
+Create `src/MyAppAssessment/Pages/Customers/Create.cshtml.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MyApp.Common;
-using MyApp.Data;
-using MyApp.Model;
+using MyAppAssessment.Common;
+using MyAppAssessment.Data;
+using MyAppAssessment.Model;
 
-namespace MyApp.Pages.Customers;
+namespace MyAppAssessment.Pages.Customers;
 
 [Authorize(Roles = AppRoles.Admin)]
 public class CreateModel : PageModel
@@ -256,11 +256,11 @@ public class CreateModel : PageModel
 }
 ```
 
-Create `src/MyApp/Pages/Customers/Create.cshtml`:
+Create `src/MyAppAssessment/Pages/Customers/Create.cshtml`:
 
 ```html
 @page
-@model MyApp.Pages.Customers.CreateModel
+@model MyAppAssessment.Pages.Customers.CreateModel
 @{
     ViewData["Title"] = "Add Customer";
 }
@@ -296,17 +296,17 @@ Create `src/MyApp/Pages/Customers/Create.cshtml`:
 
 ### 2.6 — Edit page
 
-Create `src/MyApp/Pages/Customers/Edit.cshtml.cs`:
+Create `src/MyAppAssessment/Pages/Customers/Edit.cshtml.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MyApp.Common;
-using MyApp.Data;
-using MyApp.Model;
+using MyAppAssessment.Common;
+using MyAppAssessment.Data;
+using MyAppAssessment.Model;
 
-namespace MyApp.Pages.Customers;
+namespace MyAppAssessment.Pages.Customers;
 
 [Authorize(Roles = AppRoles.Admin)]
 public class EditModel : PageModel
@@ -354,11 +354,11 @@ public class EditModel : PageModel
 }
 ```
 
-Create `src/MyApp/Pages/Customers/Edit.cshtml`:
+Create `src/MyAppAssessment/Pages/Customers/Edit.cshtml`:
 
 ```html
 @page "{id:int}"
-@model MyApp.Pages.Customers.EditModel
+@model MyAppAssessment.Pages.Customers.EditModel
 @{
     ViewData["Title"] = "Edit Customer";
 }
@@ -401,17 +401,17 @@ Create `src/MyApp/Pages/Customers/Edit.cshtml`:
 
 ### 2.7 — Delete page
 
-Create `src/MyApp/Pages/Customers/Delete.cshtml.cs`:
+Create `src/MyAppAssessment/Pages/Customers/Delete.cshtml.cs`:
 
 ```csharp
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using MyApp.Common;
-using MyApp.Data;
-using MyApp.Model;
+using MyAppAssessment.Common;
+using MyAppAssessment.Data;
+using MyAppAssessment.Model;
 
-namespace MyApp.Pages.Customers;
+namespace MyAppAssessment.Pages.Customers;
 
 [Authorize(Roles = AppRoles.Admin)]
 public class DeleteModel : PageModel
@@ -452,11 +452,11 @@ public class DeleteModel : PageModel
 }
 ```
 
-Create `src/MyApp/Pages/Customers/Delete.cshtml`:
+Create `src/MyAppAssessment/Pages/Customers/Delete.cshtml`:
 
 ```html
 @page "{id:int}"
-@model MyApp.Pages.Customers.DeleteModel
+@model MyAppAssessment.Pages.Customers.DeleteModel
 @{
     ViewData["Title"] = "Delete Customer";
 }
@@ -472,7 +472,7 @@ Create `src/MyApp/Pages/Customers/Delete.cshtml`:
 
 ### 2.8 — Add to sidebar navigation
 
-Edit `src/MyApp/Pages/Shared/_Layout.cshtml` — add inside the sidebar section:
+Edit `src/MyAppAssessment/Pages/Shared/_Layout.cshtml` — add inside the sidebar section:
 
 ```html
 <div class="sidebar-heading">Customers</div>
@@ -492,7 +492,7 @@ Edit `src/MyApp/Pages/Shared/_Layout.cshtml` — add inside the sidebar section:
 After modifying a model or `ApplicationDbContext`:
 
 ```powershell
-dotnet ef migrations add <MigrationName> --project src/MyApp/MyApp.csproj --startup-project src/MyApp/MyApp.csproj
+dotnet ef migrations add <MigrationName> --project src/MyAppAssessment/MyAppAssessment.csproj --startup-project src/MyAppAssessment/MyAppAssessment.csproj
 ```
 
 Use descriptive names: `AddCustomer`, `AddCustomerEmailIndex`.
@@ -500,12 +500,12 @@ Use descriptive names: `AddCustomer`, `AddCustomerEmailIndex`.
 ### 3.2 — Apply the migration
 
 ```powershell
-dotnet ef database update --project src/MyApp/MyApp.csproj --startup-project src/MyApp/MyApp.csproj
+dotnet ef database update --project src/MyAppAssessment/MyAppAssessment.csproj --startup-project src/MyAppAssessment/MyAppAssessment.csproj
 ```
 
 ### 3.3 — Save manual SQL scripts
 
-For changes that cannot be expressed as EF migrations (e.g. seed data, index hints), create a file in `src/MyApp/sql/` using the naming convention:
+For changes that cannot be expressed as EF migrations (e.g. seed data, index hints), create a file in `src/MyAppAssessment/sql/` using the naming convention:
 
 ```
 YYYY-MM-DD-description.sql
@@ -517,16 +517,16 @@ Write idempotent SQL — safe to run multiple times. Commit the file to git.
 
 ## Task 4 — Unit Tests
 
-Write unit tests for the business logic in your new entity. Tests must live in `tests/MyApp.Tests/`.
+Write unit tests for the business logic in your new entity. Tests must live in `tests/MyAppAssessment.Tests/`.
 
 ### 4.1 — Extract business logic
 
-If your entity has validation rules or state transitions, extract them into a static class under `src/MyApp/Common/`. This makes the logic testable without a database or web server.
+If your entity has validation rules or state transitions, extract them into a static class under `src/MyAppAssessment/Common/`. This makes the logic testable without a database or web server.
 
-Example — `src/MyApp/Common/CustomerRules.cs`:
+Example — `src/MyAppAssessment/Common/CustomerRules.cs`:
 
 ```csharp
-namespace MyApp.Common;
+namespace MyAppAssessment.Common;
 
 public static class CustomerRules
 {
@@ -542,13 +542,13 @@ public static class CustomerRules
 
 ### 4.2 — Write the tests
 
-Create `tests/MyApp.Tests/Workflow/CustomerRulesTests.cs`:
+Create `tests/MyAppAssessment.Tests/Workflow/CustomerRulesTests.cs`:
 
 ```csharp
-using MyApp.Common;
-using MyApp.Model;
+using MyAppAssessment.Common;
+using MyAppAssessment.Model;
 
-namespace MyApp.Tests.Workflow;
+namespace MyAppAssessment.Tests.Workflow;
 
 public class CustomerRulesTests
 {
@@ -577,7 +577,7 @@ Each rule must have tests for: happy path, edge case, and failure path.
 ### 4.3 — Run the tests
 
 ```powershell
-dotnet test tests/MyApp.Tests/MyApp.Tests.csproj
+dotnet test tests/MyAppAssessment.Tests/MyAppAssessment.Tests.csproj
 ```
 
 All tests must pass before submission.
