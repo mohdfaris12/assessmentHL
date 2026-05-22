@@ -602,16 +602,16 @@ Please ensure the quantity validation is covered by a unit test.
 After reviewing your submission, you will be asked to walk through and explain the following topics based on what you have implemented:
 
 - Authorization and role-based access control
-  To control user access based on roles
+  - To control user access based on roles
 - Audit logging
-  To manage activity record
+  - To manage activity record
 - Business logic placement and separation of concerns
-  Separate in other files for easy control and reusable
+  - Separate in other files for easy control and reusable
 - Logging and error handling
-  To manage activity result and check with meaningful message
+  - To manage activity result and check with meaningful message
 - Entity Framework Core query patterns
-  use async and await to find by id
+  - use async and await to find by id
 - `[BindProperty]` usage and form binding
-  To automatically map data
+  - To automatically map data
 
 There are no right or wrong ways to answer — explain based on your own understanding of the code you wrote.
