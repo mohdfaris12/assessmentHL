@@ -10,12 +10,25 @@ public static class ProductRequestWorkflow
     /// </summary>
     public static (bool IsValid, string? ErrorMessage) ValidateApproval(ProductRequest request)
     {
-        if (request.RequestType == RequestType.Remove &&
-            request.Product.Quantity < request.RequestedQuantity)
-        {
-            return (false, "Insufficient quantity");
-        }
-        return (true, null);
+           if (request.Product == null)
+    {
+        return (false, "Product is required");
+    }
+
+    if (request.RequestType == RequestType.Remove &&
+        request.Product.Quantity < request.RequestedQuantity)
+    {
+        return (false, "Insufficient quantity");
+    }
+
+    return (true, null);
+
+      //  if (request.RequestType == RequestType.Remove &&
+      //      request.Product.Quantity < request.RequestedQuantity)
+     //   {
+      //      return (false, "Insufficient quantity");
+     //   }
+      //  return (true, null);
     }
 
     /// <summary>

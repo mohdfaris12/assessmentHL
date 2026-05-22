@@ -56,7 +56,16 @@ public class ReviewModel : PageModel
         {
             request.Status = RequestStatus.Approved;
             request.ReviewRemark = reviewRemark;
-            ProductRequestWorkflow.ApplyQuantityChange(request, request.Product);
+            //ProductRequestWorkflow.ApplyQuantityChange(request, request.Product);
+            var product = request.Product;
+
+            if (product == null)
+                {
+                ModelState.AddModelError("", "Product is required");
+                return Page();
+                }
+
+            ProductRequestWorkflow.ApplyQuantityChange(request, product);
         }
 
         request.UpdatedAt = DateTime.UtcNow;
@@ -76,7 +85,8 @@ public class ReviewModel : PageModel
         await _emailSender.SendAsync(
             request.CreatedBy,
             $"Request #{request.Id} {request.Status}",
-            $"Your quantity request #{request.Id} for {request.Product.Name} has been {request.Status}. Remark: {request.ReviewRemark}");
+            //$"Your quantity request #{request.Id} for {request.Product.Name} has been {request.Status}. Remark: {request.ReviewRemark}");
+            $"Your quantity request #{request.Id} for {request.Product?.Name ?? "Unknown Product"} has been {request.Status}. Remark: {request.ReviewRemark}");
 
         return RedirectToPage("./Pending");
     }
@@ -109,8 +119,8 @@ public class ReviewModel : PageModel
         await _emailSender.SendAsync(
             request.CreatedBy,
             $"Request #{request.Id} Rejected",
-            $"Your quantity request #{request.Id} for {request.Product.Name} has been rejected. Remark: {reviewRemark}");
-
+            //$"Your quantity request #{request.Id} for {request.Product.Name} has been rejected. Remark: {reviewRemark}");
+            $"Your quantity request #{request.Id} for {request.Product?.Name ?? "Unknown Product"} has been rejected. Remark: {reviewRemark}");
         return RedirectToPage("./Pending");
     }
 }
